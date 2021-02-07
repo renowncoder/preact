@@ -25,9 +25,11 @@ export function render(vnode, parentDom, replaceNode) {
 
 	// Determine the new vnode tree and store it on the DOM element on
 	// our custom `_children` property.
-	vnode = (replaceNode || parentDom)._children = createElement(Fragment, null, [
-		vnode
-	]);
+	vnode = (replaceNode || parentDom)._children = createElement(
+		Fragment,
+		{ _parentNode: parentDom },
+		[vnode]
+	);
 
 	// Set vnode._mode
 	if (replaceNode || parentDom.firstChild) {
@@ -74,7 +76,7 @@ export function render(vnode, parentDom, replaceNode) {
 export function hydrate(vnode, parentDom) {
 	if (options._root) options._root(vnode, parentDom);
 
-	vnode = createElement(Fragment, null, [vnode]);
+	vnode = createElement(Fragment, { _parentNode: parentDom }, [vnode]);
 	vnode._mode = MODE_HYDRATE;
 
 	let commitQueue = [];

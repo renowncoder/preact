@@ -142,6 +142,19 @@ export function renderComponent(
 
 	if ((tmp = options._render)) tmp(newVNode);
 
+	// Root nodes signal that we attempt to render into a specific DOM node
+	// on the page. Root nodes can occur anywhere in the tree and not just
+	// at the top.
+	if (newProps._parentNode) {
+		parentDom = newProps._parentNode;
+
+		// The `startDom` variable might point to a node from another
+		// tree from a previous render
+		if (startDom != null && startDom.parentNode !== parentDom) {
+			startDom = null;
+		}
+	}
+
 	c._dirty = false;
 	c._vnode = newVNode;
 	c._parentDom = parentDom;
