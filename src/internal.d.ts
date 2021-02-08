@@ -104,7 +104,7 @@ export interface VNode<P = {}> extends preact.VNode<P> {
 	type: string | ComponentType<P>;
 	props: P & { children: ComponentChildren };
 	ref?: Ref<any> | null;
-	_children: Array<VNode<any>> | null;
+	_children: string | Array<VNode<any>> | null;
 	_parent: VNode | null;
 	_depth: number | null;
 	/**

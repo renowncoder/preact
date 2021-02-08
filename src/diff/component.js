@@ -168,7 +168,8 @@ export function renderComponent(
 	if (isNew) {
 		nextDomSibling = mountChildren(
 			parentDom,
-			Array.isArray(renderResult) ? renderResult : [renderResult],
+			// Array.isArray(renderResult) ? renderResult : [renderResult],
+			renderResult,
 			newVNode,
 			globalContext,
 			isSvg,
@@ -178,7 +179,8 @@ export function renderComponent(
 	} else {
 		nextDomSibling = diffChildren(
 			parentDom,
-			Array.isArray(renderResult) ? renderResult : [renderResult],
+			// Array.isArray(renderResult) ? renderResult : [renderResult],
+			renderResult,
 			newVNode,
 			oldVNode,
 			globalContext,
